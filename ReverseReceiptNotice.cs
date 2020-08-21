@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace ZSKD.HUANGDING.Plugins
 {
-    [System.ComponentModel.Description("收料通知反写送货计划")]
+    [HotUpdate]
+    [System.ComponentModel.Description("收料通知反写送货计划,更新送货计划的收料数量,到期天数,发送供应商日期")]
     public class ReverseReceiptNotice: AbstractOperationServicePlugIn
     {
 
 
-        [HotUpdate]
-        [Description("更新送货计划的收料数量,到期天数,发送供应商日期")]
+       
         public override void EndOperationTransaction(EndOperationTransactionArgs e)
         {
 
@@ -35,7 +35,7 @@ namespace ZSKD.HUANGDING.Plugins
                     DynamicObject EntryValue = PUR_ReceiveEntry[i];
                     int entryId = Convert.ToInt32(EntryValue["Id"]);
                     string sql =
-                    "/*dialect*/update t_Pur_DeliveryPlanEntry set  FRECEIPTQTY=t5.FMUSTQTY,FEXPIRYDAYS=isnull(DATEDIFF(day,getdate(),t1.F_CGDDJHDATE))  from t_Pur_DeliveryPlanEntry t1               " +
+                    "/*dialect*/update t_Pur_DeliveryPlanEntry set  FRECEIPTQTY=t5.FMUSTQTY  from t_Pur_DeliveryPlanEntry t1               " +
                     " join t_Pur_DeliveryPlanEntry_LK t2 on t1.FEntryID = t2.FEntryID and t2.FSTableName = 't_PUR_POOrderEntry'    " +
                     " join t_PUR_POOrderEntry t3 on t3.FID = t2.FSBillId    and t3.FEntryID=t2.FSID                                                         " +
                     " join T_PUR_RECEIVEENTRY_LK t4 on t4.FSBILLID = t3.FID and t3.FEntryID=t4.FSID and t4.FSTABLENAME = 't_PUR_POOrderEntry'              " +

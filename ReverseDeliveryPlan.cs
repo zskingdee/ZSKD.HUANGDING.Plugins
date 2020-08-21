@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace ZSKD.HUANGDING.Plugins
 {
-    [System.ComponentModel.Description("采购入库反写送货计划")]
+    [HotUpdate]
+    [System.ComponentModel.Description("采购入库反写送货计划，更新送货计划的入库数量,欠数")]
    public class ReverseDeliveryPlan : AbstractOperationServicePlugIn
     {
 
 
 
-        [HotUpdate]
-        [Description("更新送货计划的入库数量,欠数")]
+     
         public override void EndOperationTransaction(EndOperationTransactionArgs e)
         {
 

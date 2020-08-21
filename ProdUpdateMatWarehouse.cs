@@ -11,7 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZSKD.HUANGDING.Plugins
-{[Kingdee.BOS.Util.HotUpdate]
+{
+    [Kingdee.BOS.Util.HotUpdate]
     [System.ComponentModel.Description("生产订单保存时更新生产生产用料的对应的仓库")]
     public class ProdUpdateMatWarehouse:AbstractOperationServicePlugIn
     {
