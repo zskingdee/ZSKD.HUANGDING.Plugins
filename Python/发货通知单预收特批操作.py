@@ -15,15 +15,15 @@ from Kingdee.BOS.Core.Permission import *
 from Kingdee.BOS.ServiceHelper import *
 from System import *
 def EndOperationTransaction(e):
-	#销售订单预收特批
+	#发货通知单预收特批操作
 	if this.FormOperation.Operation=="SpecialApproval":
 		for dataobj in e.DataEntitys:
             #F_HDIN_SpecialApproval  F_HDIN_CHECKBOX
-			sql="update T_SAL_ORDER set F_HDIN_SpecialApproval=1 where FID="+str(dataobj["ID"])
+			sql="update T_SAL_DELIVERYNOTICE set F_HDIN_SpecialApproval=1 where FID="+str(dataobj["ID"])
 			#raise Exception("提示信息！"+str(dataobj["ID"]))
 			DBUtils.Execute(this.Context,sql);
 	elif this.FormOperation.Operation=="UnSpecialApproval":
 		for dataobj in e.DataEntitys:
-			sql="update T_SAL_ORDER set F_HDIN_SpecialApproval=0 where FID="+str(dataobj["ID"])
+			sql="update T_SAL_DELIVERYNOTICE set F_HDIN_SpecialApproval=0 where FID="+str(dataobj["ID"])
 			#raise Exception("提示信息！"+str(dataobj["ID"]))
 			DBUtils.Execute(this.Context,sql);
