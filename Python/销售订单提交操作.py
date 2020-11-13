@@ -21,12 +21,12 @@ from System import *
 def OnAddValidators(e):
     for dataobj in e.DataEntities:
         FID=dataobj["ID"]
-        F_HDIN_SpecialApproval=dataobj["F_Hdin_CheckBox"]
+        F_HDIN_SpecialApproval=dataobj["F_HDIN_SpecialApproval"]
         sql="/*dialect*/select distinct F_Hdin_CheckBox from T_SAL_ORDER where FID= "+str(FID)
         rows=DBUtils.ExecuteDynamicObject(this.Context,sql);
 
         if rows.Count>0:
-            F_HDIN_SpecialApproval=int(rows[0]["F_Hdin_CheckBox"])
+            F_HDIN_SpecialApproval=int(rows[0]["F_HDIN_SpecialApproval"])
 
         if F_HDIN_SpecialApproval==0:
             item=ServSalOrder.SubmitValidator()
