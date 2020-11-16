@@ -22,7 +22,7 @@ def OnAddValidators(e):
     for dataobj in e.DataEntities:
         FID=dataobj["ID"]
         F_HDIN_SpecialApproval=dataobj["F_HDIN_SpecialApproval"]
-        sql="/*dialect*/select distinct F_Hdin_CheckBox from T_SAL_ORDER where FID= "+str(FID)
+        sql="/*dialect*/select distinct F_HDIN_SpecialApproval from T_SAL_ORDER where FID= "+str(FID)
         rows=DBUtils.ExecuteDynamicObject(this.Context,sql);
 
         if rows.Count>0:
@@ -49,5 +49,5 @@ def OnPreparePropertys(e):
     e.FieldKeys.Add("FIsFree");
     e.FieldKeys.Add("FPriceCoefficient");
     e.FieldKeys.Add("FSysPrice");
-    e.FieldKeys.Add("F_Hdin_CheckBox");
+    e.FieldKeys.Add("F_HDIN_SpecialApproval");
 
